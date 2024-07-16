@@ -2,21 +2,17 @@ class Solution {
 public:
     string mergeAlternately(string word1, string word2) {
         
-        stringstream ss;
-        int i = 0, j = 0;
-
-        while (i < word1.length() && j < word2.length()) {
-            ss << word1[i++] << word2[j++];
+        string result = "";
+        int i = 0;
+        while (i < word1.length() || i < word2.length()) {
+            if (i < word1.length()) {
+                result += word1[i];
+            }
+            if (i < word2.length()) {
+                result += word2[i];
+            }
+            i++;
         }
-
-        while (i < word1.length()) {
-            ss << word1[i++];
-        }
-
-        while (j < word2.length()) {
-            ss << word2[j++];
-        }
-
-        return ss.str();
+        return result;
     }
 };
