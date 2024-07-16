@@ -14,7 +14,7 @@ public:
             }
         }
         
-        vector<int> u(ans.begin(),ans.end());
+        vector<int> u(begin(ans),end(ans));
         return u;
     }
 };
