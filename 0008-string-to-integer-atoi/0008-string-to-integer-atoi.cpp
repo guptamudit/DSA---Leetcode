@@ -5,18 +5,18 @@ public:
         long long ans = 0;
         bool set = true;
 
-        // Ignore leading whitespaces
+       
         while (i < n && s[i] == ' ') {
             i++;
         }
 
-        // Check the sign
+       
         if (i < n && (s[i] == '+' || s[i] == '-')) {
             sign = (s[i] == '+') ? 1 : -1;
             i++;
         }
 
-        // Convert the digits
+        
         while (i < n && s[i] >= '0' && s[i] <= '9') {
             ans = ans * 10 + (s[i] - '0');
             if (sign == 1 && ans > INT_MAX) {
