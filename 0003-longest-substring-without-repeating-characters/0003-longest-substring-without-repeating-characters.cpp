@@ -1,3 +1,4 @@
+//O(n)
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -14,7 +15,6 @@ public:
             }
             int len = r - l + 1;
             maxlen = max(maxlen, len);
-            
             mp[s[r]] = r;
             r++;
         }
