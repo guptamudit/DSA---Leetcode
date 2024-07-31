@@ -212,6 +212,37 @@ Node *insertat_kth_elementLL(Node *head, int k, int val)
     return head;
 }
 
+// insert an element before the value x
+Node *insert_before_element_value(Node *head, int x, int val)
+{
+
+    if (head == NULL)
+    {
+        return NULL;
+    }
+    if (head->data == x)
+    {
+        Node *temp = new Node(val, head);
+        return temp;
+    }
+
+    Node *temp = head;
+
+    while (temp != NULL)
+    {
+
+        if (temp->next->data == x)
+        {
+            Node *n = new Node(val);
+            n->next = temp->next;
+            temp->next = n;
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}
+
 int main()
 {
     vector<int> arr = {12, 5, 8, 7};
@@ -222,7 +253,8 @@ int main()
     // head = removeElement(head, 5);
     // head = insertatheadLL(head, 100);
     // head = insertatlastLL(head, 100);
-    head = insertat_kth_elementLL(head, 2, 100);
+    // head = insertat_kth_elementLL(head, 2, 100);
+    insert_before_element_value(head, 8, 100);
 
     print(head);
 }
