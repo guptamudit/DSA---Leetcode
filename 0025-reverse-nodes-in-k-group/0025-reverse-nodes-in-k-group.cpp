@@ -1,57 +1,27 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
-    ListNode* reverse(ListNode* head){
-        ListNode* temp = head;
-        ListNode* prev = NULL;
-        
-        while(temp!=NULL){
-            ListNode* front = temp->next;
-            temp->next = prev;
-            prev =  temp;
-            temp = front;
-        }
-        return prev;
-    }
-public:
-    ListNode* findKthNode(ListNode* temp, int k){
-        k -= 1;
-        while(temp != NULL && k > 0){
-            k--;
-            temp = temp->next;
-        }
-        return temp;
-    }
-public:
     ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode* prevnode = NULL;
-        ListNode* temp = head;
-        while(temp != NULL){
-            ListNode* kthNode = findKthNode(temp, k);
-            if(kthNode == NULL){
-                if(prevnode) prevnode->next = temp;
-                break;    
-            }
-            ListNode* nextnode = kthNode->next;
-            kthNode->next = NULL;
-            reverse(temp);
-            if(temp == head){
-                head = kthNode;
-            }else{
-                prevnode->next = kthNode;
-            }
-            prevnode = temp;
-            temp = nextnode;
+        if(head==NULL||k==1) return head;
+        ListNode *dummy=new ListNode();
+        dummy->next=head;
+        ListNode *cur=dummy,*nex=dummy,*pre=dummy;
+        int count=0;
+        while(cur->next!=NULL){
+            cur=cur->next;
+            count++;
         }
-        return head;
+        while(count>=k){
+            cur=pre->next;
+            nex=cur->next;
+            for(int i=1;i<k;i++){
+                cur->next=nex->next;
+                nex->next=pre->next;
+                pre->next=nex;
+                nex=cur->next;
+            }
+            pre=cur;
+            count-=k;
+        }
+        return dummy->next;
     }
 };
