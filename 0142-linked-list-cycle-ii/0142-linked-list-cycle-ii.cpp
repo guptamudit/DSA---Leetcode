@@ -11,20 +11,22 @@ public:
     ListNode *detectCycle(ListNode *head) {
         if(head == NULL) return NULL;  
         
-        map<ListNode*,int> mp;
+        ListNode* slow = head;
+        ListNode* fast = head;
         
-        ListNode* temp = head;
-        int index = 0;  // Index to keep track of the current position in the list
-        
-        while(temp != NULL){
-            if(mp.find(temp) != mp.end()){
-                return temp;   //return the node
+        while(fast!=NULL && fast->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(fast == slow){
+                slow = head;
+                while(fast!=slow){
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
             }
-            mp[temp] = index;
-            temp = temp->next;
-            index++;
         }
-        return NULL; 
+        return NULL;
         
     }
 };
