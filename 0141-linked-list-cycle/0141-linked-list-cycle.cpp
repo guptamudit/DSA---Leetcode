@@ -4,7 +4,7 @@ public:
         
         if(head == NULL) return head;
         
-        map<ListNode*,int> mp;
+        unordered_map<ListNode*,int> mp;
         
         ListNode* temp = head;
         while(temp!=NULL){
