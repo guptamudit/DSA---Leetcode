@@ -18,6 +18,6 @@ public:
             mp[inorder[i]]=i;
         }
         int preStart = 0;
-        return build(preorder, inorder, preStart, 0, preorder.size() - 1,mp);
+        return build(preorder, inorder, preStart, 0, inorder.size() - 1,mp);
     }
 };
