@@ -12,7 +12,7 @@
 class Solution {
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
-        TreeNode* ans;
+        
         while(root != NULL){
             if(root -> val == val){
                 return root;
