@@ -11,19 +11,22 @@
  */
 class Solution {
 public:
-    TreeNode* searchBST(TreeNode* root, int val) {
+    void find(TreeNode* root, int level, vector<int>& ans){
+        if(root == NULL) return;
         
-        while(root != NULL){
-            if(root -> val == val){
-                return root;
-            }
-            else if(root -> val > val){
-                root = root -> left;
-            }
-            else{
-                root = root -> right;
-            }
+        if(level == ans.size()){
+            ans.push_back(root->val);
         }
-        return NULL;
+        
+        find(root->right, level + 1, ans);
+        find(root->left, level + 1, ans);
+    }
+public:
+    vector<int> rightSideView(TreeNode* root) {
+      
+        vector<int> ans;
+        find(root, 0, ans);
+        return ans;
+        
     }
 };
