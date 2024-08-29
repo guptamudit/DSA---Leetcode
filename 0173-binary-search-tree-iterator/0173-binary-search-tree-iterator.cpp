@@ -10,16 +10,21 @@
  * };
  */
 class BSTIterator {
+    //stack to store the left element first
 private:  stack<TreeNode*> st;
 public:
     BSTIterator(TreeNode* root) {
+        //store all thr left elemenst
         pushAll(root);
     }
     //return next number
     int next() {
+        //the stack top will be the first element of inorder as it it [left root right]
         TreeNode* temp = st.top();
         st.pop();
+        //if that node has any right store that as well to complete the inorder
         pushAll(temp->right);
+        //return value of the nodes that come
         return temp->val;
     }
     //return if we have next number
