@@ -2,9 +2,6 @@ class Solution {
 public:
     double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start_node, int end_node) {
         setprecision(5);
-        //bellmann ford
-        //n = no. of vertices
-        //size of edges[][] and size of succProb[] is same
         int m = edges.size();
         vector<double> dist(n);
         dist[start_node] = 1.0;
