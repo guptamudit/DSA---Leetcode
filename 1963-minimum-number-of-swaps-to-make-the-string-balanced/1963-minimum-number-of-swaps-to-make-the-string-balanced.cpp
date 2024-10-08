@@ -1,20 +1,20 @@
+
+//see notes also
 class Solution {
 public:
     int minSwaps(string s) {
-        stack<char> st;
-        int imbalance = 0;
+        int closing = 0;
+        int maxClosing = 0;
+        
         for(auto it : s){
             if(it == '['){
-                st.push(it);
-            }
-            else if(it == ']' && st.empty()){
-                imbalance++;
+                closing--;
             }else{
-                st.pop();
+                closing++;
             }
+            maxClosing = max(maxClosing, closing);
         }
         
-        int res = (imbalance + 1) / 2;
-        return res;
+        return (maxClosing + 1)/2;
     }
 };
