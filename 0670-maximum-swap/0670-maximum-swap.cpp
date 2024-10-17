@@ -1,15 +1,25 @@
 class Solution {
 public:
     int maximumSwap(int num) {
-        string numstr = to_string(num);
-        string t = numstr;        
-        for(int i=0;i<t.size();i++){
-            for(int j=i+1;j<t.size();j++){
-                swap(t[i],t[j]);
-                int m = stoi(t);
-                num = m > num ? m : num;
-                t = numstr;
+        priority_queue<char> pq; 
+        int i = 0; //to iterate in string
+        string x = to_string(num);
+        
+        for(auto it : x){
+            pq.push(it);
+        }
+            
+        for(auto &it : x){
+            if(it == pq.top()){
+                pq.pop();
             }
+            else{
+                size_t p = x.rfind(pq.top());
+                swap(x[i],x[(int)p]);
+                return stoi(x);
+            }
+            
+            i++;
         }
         return num;
     }
